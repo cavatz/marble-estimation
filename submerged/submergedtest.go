@@ -1,4 +1,4 @@
-package main
+package submergedtest
 
 import (
 	"bufio"
@@ -8,7 +8,7 @@ import (
 	"strconv"
 )
 
-func main() {
+func test_submerged() {
 
 	for {
 		const g float64 = 9.81
@@ -27,28 +27,31 @@ func main() {
 			break
 		}
 
-		V, err := strconv.ParseFloat(Vtext, 64)
+		V_total, err := strconv.ParseFloat(Vtext, 64)
 		handleError(err)
 
-		V *= math.Pow(METERS_CONVERSION, 3)
-
-		grams := (V * P) * 1000
+		V_total *= math.Pow(METERS_CONVERSION, 3)
 
 		fmt.Printf("volume of hollowed boat: ")
 		scanner.Scan()
 
-		v, err := strconv.ParseFloat(scanner.Text(), 64)
+		v_hollow, err := strconv.ParseFloat(scanner.Text(), 64)
 		handleError(err)
 
-		v *= math.Pow(METERS_CONVERSION, 3)
+		v_hollow *= math.Pow(METERS_CONVERSION, 3)
 
-		m := (float64(p) * v) * 1000 //weight of b oat print it
+		mKg := (float64(p) * v_hollow)
 
-		marbles_held := math.Round((grams - m) / float64(MARBLE_WEIGHT))
-		weight := roundFloat(m, 2)
+		density := mKg / v_hollow
 
+		v_sumberged := (density / float64(p)) * V_total
+
+		grams := (v_sumberged * P) * 1000
+
+		mG := mKg * 1000
+
+		marbles_held := (grams - mG) / float64(MARBLE_WEIGHT)
 		fmt.Printf("%v marbles held before sinking. \n", marbles_held)
-		fmt.Printf("Boat weighs %v grams \n", weight)
 	}
 	//F = (P * V) * g
 
@@ -59,9 +62,4 @@ func handleError(err error) {
 		fmt.Printf("Error parsing volume of the boat.")
 		os.Exit(1)
 	}
-}
-
-func roundFloat(val float64, precision uint) float64 {
-	r := math.Pow(10, float64(precision))
-	return math.Round(val*r) / r
 }

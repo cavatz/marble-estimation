@@ -15,7 +15,7 @@ func main() {
 		const P float64 = 1000.0
 		const METERS_CONVERSION float64 = 0.0254
 		const MARBLE_WEIGHT int = 4
-		const p int = 1240
+		const p int = 1140
 
 		scanner := bufio.NewScanner(os.Stdin)
 
@@ -48,7 +48,8 @@ func main() {
 		weight := roundFloat(m, 2)
 
 		fmt.Printf("%v marbles held before sinking. \n", marbles_held)
-		fmt.Printf("Boat weighs %v grams \n", weight)
+		fmt.Printf("Boat weighs %v grams. \n", weight)
+		fmt.Printf("Total mass: %v grams. \n", math.Round(grams))
 	}
 	//F = (P * V) * g
 

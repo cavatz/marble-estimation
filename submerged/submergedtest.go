@@ -8,7 +8,7 @@ import (
 	"strconv"
 )
 
-func test_submerged() {
+func TestSubmerged() {
 
 	for {
 		const g float64 = 9.81

@@ -14,8 +14,8 @@ func main() {
 		const g float64 = 9.81
 		const P float64 = 1000.0
 		const METERS_CONVERSION float64 = 0.0254
-		const MARBLE_WEIGHT int = 4
-		const p int = 1140
+		const MARBLE_WEIGHT int = 8
+		const p int = 1240
 
 		scanner := bufio.NewScanner(os.Stdin)
 
